@@ -1,0 +1,148 @@
+public class CreateList {
+	    
+	    static CreateNode head;
+	     boolean flag =false;
+	    
+	    public CreateList(){
+	     
+	        head = null;
+	    }
+	    
+	    public static void main(String[] args) {
+	        // TODO code application logic here
+	        
+	        CreateList cl = new CreateList();
+	   
+	        System.out.println("calling insert method");
+	        cl.insert(30);
+	        cl.insert(11);
+	        cl.insert(2);
+	        cl.insert(15);
+	        cl.insert(14);
+	        cl.insert(11);
+	        cl.insert(20);
+	        cl.insert(1);
+	        
+	        System.out.println("displaying list");
+	        cl.display();
+	                
+	        cl.deleteNode(14);
+	        cl.deleteNode(30);
+	        cl.deleteNode(23);
+	        cl.deleteNode(11);
+	        cl.deleteNode(1);
+	        System.out.println("after delete");
+	        cl.display();
+	    }
+	    public void insert(int val){
+	        
+	        CreateNode newNode = new CreateNode(val);
+	        CreateNode temp =head;
+	        CreateNode temp2 = null ;        
+	        CreateNode temp1 = null ;
+	        if(isLinkEmpty()==true){
+	            
+	            System.out.println("inserting first node");
+	            head=newNode;
+	            newNode.next=null;
+	            
+	        }
+	        else
+	            
+	            if(temp.data<val && temp.next!=null){
+	                System.out.println("temp"+temp.data);
+	                temp1=temp;
+	                while(temp1.next.data<val && temp1.next!=null){
+	                    
+	                        temp1=temp1.next;
+	                }
+	                        System.out.println("in while temp1 data"+temp1.data); 
+	                        temp2=temp1.next;
+	                        System.out.println("temp1 next"+" " +temp2.data);
+	                        temp1.next=newNode;
+	                        System.out.println("temp1 next"+" "+temp1.next.data);
+	                        newNode.next=temp2;
+	                        System.out.println("newnode next"+" "+newNode.next.data);
+	                    
+	                      
+	                }
+	            
+	                else if (temp.data<val && temp.next==null){
+	                    temp.next=newNode;
+	                    System.out.println("temp1 next outside while"+" "+temp.next.data);
+	                    newNode.next=null;
+	                        
+	                }
+
+	               
+	            
+	            else{
+	                System.out.println("inserting lesser value");
+	                newNode.next=head;
+	                head=newNode;
+	            }
+	            
+	            
+	                    
+	                            
+	    }            
+	                
+	public void deleteNode(int val){
+	      
+	    CreateNode currentNode = head;
+	       
+	    CreateNode prevNode=null;
+	    boolean flag=false;
+	    
+	    while(currentNode!=null && flag==false){
+	    	
+	    	
+	    	if(currentNode.data==val){
+	            if(currentNode==head){
+	                head=head.next;
+		            flag=true;
+	                break;
+	            }
+	            else{
+	                
+	            	prevNode.next = currentNode.next;
+		            flag=true;
+	            	break;
+	            }
+	            }
+	        else
+	        {
+	            prevNode = currentNode;
+	            currentNode=currentNode.next;  
+	            }
+	    	
+	    }
+	    if(flag==false){
+	        System.out.println("Element not found in list:"+val);
+
+	    }   
+	   }        
+	        
+	    public void display(){
+	        
+	        CreateNode temp=head;
+	        System.out.println("head++"+head.data);
+	        while(temp!=null){
+	            System.out.println("elements in link list are"+temp.data);
+	            temp=temp.next;
+	        }
+	    } 
+	    
+	    public boolean isLinkEmpty(){
+	        return(head==null);
+	    }
+	    private static class CreateNode {
+
+	        CreateNode next;
+	        int data;
+	        public CreateNode(int val) {
+	            data=val;
+	        }
+	    }
+	    
+	}
