@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pkg5343;
+
+/**
+ *
+ * @author niksat21
+ */
+public class HeapSort{
+    private static int size;
+    public static void main(String[] args) {
+        
+        int[] input_arr=new int[]{0,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+        System.out.println("");
+        System.out.println("Before sorting");
+        for (int i = 0; i < input_arr.length; i++)
+            System.out.print(input_arr[i]+" ");            
+        System.out.print("");      
+        heapsort(input_arr);
+        /* Print sorted Array */
+        System.out.println("\nElements after sorting ");        
+        for (int i = 0; i < input_arr.length; i++)
+            System.out.print(input_arr[i]+" ");            
+        System.out.print("");            
+ 
+        
+    }
+    
+    public static void heapsort(int[] before_sort){
+        
+        buildHeap(before_sort);
+        for(int i=size;i>0;i--){
+            swap(before_sort,0,i);
+            size=size-1;
+            heapify(before_sort,0);
+        }
+        
+    }
+    
+     public static void buildHeap(int arr[])
+    {
+        size = arr.length-1;
+        for (int i = size/2; i >= 0; i--)
+            heapify(arr, i);        
+    }
+     
+     public static void heapify(int arr[], int i){
+    
+        int left = 2*i ;
+        int right = 2*i + 1;
+        int max = i;
+        if (left <= size && arr[left] > arr[i])
+            max = left;
+        if (right <= size && arr[right] > arr[max])        
+            max = right;
+ 
+        if (max != i)
+        {
+            swap(arr, i, max);
+            heapify(arr, max);
+        }
+    }
+     
+     public static void swap(int arr[], int i, int j)
+    {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp; 
+    }    
+}
