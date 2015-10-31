@@ -1,0 +1,92 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+
+/**
+ *
+ * @author niksat21
+ */
+public class TernarySearch{
+   
+    public static void main(String[] args) {
+        
+       
+        
+        int[] arr = new int[]{2,3,5,7,8,9,15};
+        boolean search;
+        TernarySearch as = new TernarySearch();
+        
+        
+        search = as.search(arr,2,0,arr.length);
+        if(search==true){
+            System.out.println("Number 2 found and it's first in array");
+        }else{
+            System.err.println("ELement 2 not found in list");
+        }
+        System.out.println("Array : ");
+        for(int m=0;m<arr.length;m++)
+            System.out.print("\t"+arr[m]);
+        System.out.println("\n");
+        
+        search = as.search(arr,15,0,arr.length-1);
+        if(search==true){
+            System.out.println("Number 15 found and it's last in array");
+        }else{
+            System.err.println("ELement 15 not found in list");
+        }
+        System.out.println("Array : ");
+        for(int m=0;m<arr.length;m++)
+            System.out.print("\t"+arr[m]);
+        System.out.println("\n");
+        
+        search = as.search(arr,7,0,arr.length-1);
+         if(search==true){
+             System.out.println("Number 7 found and it's somewhere in array");
+         }else{
+             System.err.println("ELement 7 not found in list");
+         }
+        System.out.println("Array : ");
+        for(int m=0;m<arr.length;m++)
+            System.out.print("\t"+arr[m]);
+        System.out.println("\n");
+        search = as.search(arr,20,0,arr.length-1);
+         if(search==true){
+             System.out.println("Number 20 found and it's somewhere in array");
+         }else{
+             System.out.println("ELement  20 not found in list");
+         }
+        System.out.println("Array : ");
+        for(int m=0;m<arr.length;m++)
+            System.out.print("\t"+arr[m]);
+        System.out.println("\n");
+    }
+    public boolean search(int[] b,int key,int low,int high){
+       try{
+        
+   
+        int leftCursor = low+((high-low)/3);
+        int rightCursor = low+2*(high-low)/3;
+        
+        if(b[leftCursor]==key)
+            return true;
+        else if(key<b[leftCursor]){
+            return search(b, key, 0, leftCursor);
+        }else if(key==b[rightCursor]){
+            return true;
+        }else if(key<b[rightCursor] && key>b[leftCursor]){
+            return search(b, key, leftCursor,rightCursor);
+        }else
+            return search(b, key,rightCursor,b.length);
+        
+        
+       }catch(StackOverflowError sofe){
+           return false;
+       }     
+    
+    }
+}
