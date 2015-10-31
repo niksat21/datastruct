@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author niksat21
+ */
+public class QueueImp{
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    static int[] in_array;
+    static int[] out_array =null;
+    int deq = 0;
+    int pos =0;
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+       
+        int value=0;
+       
+        QueueImp aa = new QueueImp();
+        Scanner sc = new Scanner(System.in);
+        in_array = new int[5];
+        //out_array = new int[5];
+        
+        
+        System.out.println("1.Enqueue,2.dequeue,3.display,4.exit");
+        while(sc.hasNext()){
+            
+             value= sc.nextInt();
+            if(value==4){
+                
+                break;
+            }
+            else if(value==1){
+                System.out.println("enter element value to be enqueued");
+                value=sc.nextInt();
+                aa.enqueue(value);
+                System.out.println("1.Enqueue,2.dequeue,3.display,4.exit");
+        
+                
+            }
+            else if(value==2){
+                if(out_array==null){
+                    aa.copy();
+                }
+                else
+                    aa.dequeue();
+                System.out.println("1.Enqueue,2.dequeue,3.display,4.exit");
+                
+            }
+            
+            else if(value ==3){
+                aa.displayQueue();
+                System.out.println("1.Enqueue,2.dequeue,3.display,4.exit");
+            }
+      
+        }
+    
+    }
+    
+    public void enqueue(int item){
+      
+       try{ 
+        in_array[pos]= item;
+        
+        pos++;
+       }catch(ArrayIndexOutOfBoundsException aiobe){
+           System.err.println("array index out of bound limit reached");
+           System.exit(0);
+       }
+    }
+    
+    public void displayQueue(){
+        
+        
+        System.out.println("elemetns in queue are:");
+        for (int k=0;k<pos;k++){
+            System.out.println(""+in_array[k]); 
+        }
+    }
+    public void copy(){
+        
+        out_array = new int[5];  
+        for(int k=0;k<pos;k++){
+            out_array[k]=in_array[k];
+                   
+        }
+        dequeue();
+    }
+    public void dequeue(){
+        
+        
+           
+           try{
+               
+             
+               
+                System.out.println("element dequeued is"+out_array[deq]);
+                
+                for(int j=0;j<=pos;j++){
+                    
+                    out_array[j]=out_array[j+1];
+                }
+                
+                
+                }catch(ArrayIndexOutOfBoundsException aiob){
+                    System.err.println("array index out of bound");
+                    System.exit(0);
+                }
+        
+                   
+        
+            
+    }
+}
+    
+    
+   
+    
+    
+
