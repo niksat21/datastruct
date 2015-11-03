@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package datastructures;
+
+/**
+ *
+ * @author niksat21
+ */
+public class PriorityQueue {
+    static int deq_count =4;
+    public static void main(String[] args){
+        
+        int[] input_arr = new int[]{13,24,5,6,76,34};
+        PriorityQueue  pq = new PriorityQueue();
+        //pq.heapify(input_arr);
+        pq.dequeue(input_arr,input_arr.length);
+        
+    }
+    //build min heap
+     public int[] heapify(int[] a,int last){
+        int plp = (last/2)-1; // position of last parent
+        
+        int temp;
+        for(int i=plp;i>-1;i--){ 
+            if((i*2)+2<last){
+                
+                if(a[(i*2)+1]<a[(i*2)+2] && a[(i*2)+1]<a[i] ){
+                    temp=a[(i*2)+1];
+                    a[(i*2)+1]=a[i];
+                    a[i]=temp;
+                }else if(a[(i*2)+1]>a[(i*2)+2] && a[(i*2)+2]<a[i] ){
+                    temp=a[(i*2)+2];
+                    a[(i*2)+2]=a[i];
+                    a[i]=temp;
+                }
+            }else{
+                
+                if(a[i]>a[(i*2)+1]){
+                     temp=a[(i*2)+1];
+                     a[(i*2)+1]=a[i];
+                     a[i]=temp;
+                }
+            }
+             
+        }
+        
+        return a;
+    }
+     
+    public void dequeue(int[] a,int last){
+    
+        PriorityQueue pq = new PriorityQueue();
+        a = pq.heapify(a,last);
+
+        a[0]=a[last-1];
+        a=pq.heapify(a,last);
+       // System.out.println("");
+        System.out.println("After dequeue");
+        pq.display(a,last);
+        last--;
+        if(last>0)
+            dequeue(a,last);
+    }
+    
+    public void display(int[] a,int last){
+        System.out.println("");
+        for(int k=0;k<last;k++)
+            System.out.print("\t"+a[k]);
+        System.err.println("");
+    }
+}
