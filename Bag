@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package datastructures;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author niksat21
+ */
+class Bag {
+   ArrayList bag  ;
+    
+    private  Bag(){
+       bag = new ArrayList();
+    }
+    
+    public static void main(String[] args) {
+    
+        Bag b= new Bag();
+        System.out.println("Add item in bag");
+        b.add(4);
+        System.out.println("getSize of bag");
+        int size = b.size();
+        System.out.println("size is"+size);
+        System.out.println("check if bag is empty");
+        boolean flag=b.isEmpty();
+        System.out.println("bag is empty????"+flag);
+    }
+    
+    private void add(int item){
+    
+        bag.add(item);
+    }
+    
+    private boolean isEmpty(){
+        if(bag.isEmpty())
+            return true;
+    return false;
+    
+    }
+    
+    private int size(){
+        
+    return bag.size();
+    }
+    
+    
+}
