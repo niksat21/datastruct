@@ -1,0 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package datastructures;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author niksat21
+ */
+public class HashFunction {
+    static String[] a;
+    
+    public static void main(String[] args) {
+          
+        String str=null,strVer=null;
+        boolean flag=false;
+        a = new String[100];
+        HashFunction hf = new HashFunction();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter String to store");
+        str = sc.nextLine();
+        hf.store(str);
+        System.out.println("verify if string is already stored");
+        strVer = sc.nextLine();
+        flag=hf.fetch(strVer);
+        if(flag==true){
+            System.out.println("String"+" "+strVer+" "+"is already stored");
+        }
+        else
+            System.err.println("String"+" "+strVer+" "+"is not yet stored");
+          
+    }
+    public int hf1(String str){
+        int asciisum=0,hashval=0;
+        for(int k=0;k<str.length();k++){
+            asciisum += str.codePointAt(k);
+        }
+        //System.out.println("asciisum"+asciisum);
+        hashval=asciisum%100;
+        
+        return hashval;
+    }
+    public void store(String str){
+        HashFunction hf = new HashFunction();
+        int hashval=0;
+        hashval=hf.hf1(str);
+        a[hashval]=str;
+        
+    }
+    public boolean fetch(String str){
+        HashFunction hf = new HashFunction();
+        int hashval=0;
+        hashval=hf.hf1(str);
+        
+        try{
+        if(a[hashval].equals(str)){
+            return true;
+        }
+        }catch(NullPointerException e){
+            return false;
+        }
+        return false;
+       
+    }
+}
